@@ -677,6 +677,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   @keyframes fadein{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
   @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
   ::-webkit-scrollbar{width:11px;height:11px}
   ::-webkit-scrollbar-thumb{background:#e2e2e2;border-radius:8px;border:3px solid transparent;background-clip:padding-box}
   ::-webkit-scrollbar-thumb:hover{background:#cdcdcd;background-clip:padding-box;border:3px solid transparent}
@@ -856,7 +857,20 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
               <sc-if value="{{ m.isAssistant }}" hint-placeholder-val="">
                 <div style="width:100%;display:flex;flex-direction:column;gap:9px">
                   <div style="display:flex;align-items:center;gap:8px"><div style="width:22px;height:22px;border-radius:6px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Frank Ruhl Libre',serif;font-size:13px;direction:rtl">ת</div><span style="font-size:12.5px;font-weight:600">{{ m.modelName }}</span><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted2)">{{ m.backend }}</span></div>
+                  <sc-if value="{{ m.hasThinking }}" hint-placeholder-val="">
+                    <div style="padding-left:30px;display:flex;flex-direction:column;align-items:flex-start;gap:6px">
+                      <button sc-camel-on-click="{{ m.toggleThink }}" title="Show or hide how the model reasoned" style="display:flex;align-items:center;gap:6px;border:none;background:transparent;padding:3px 7px 3px 3px;margin-left:-3px;border-radius:7px;cursor:pointer;font-size:13px;font-weight:500;color:var(--muted)" style-hover="color:var(--ink);background:var(--hover)">
+                        <svg width="14" height="14" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="transform:{{ m.thinkTransform }};transition:transform .15s ease"><path d="m9 6 6 6-6 6"></path></svg>
+                        <span style="animation:{{ m.thinkAnim }}">{{ m.thinkLabel }}</span>
+                      </button>
+                      <sc-if value="{{ m.thinkExpanded }}" hint-placeholder-val="">
+                        <div style="border-left:2px solid var(--line2);padding:2px 0 2px 13px;font-size:13.5px;line-height:1.65;color:var(--muted);white-space:pre-wrap;overflow-wrap:anywhere;max-height:{{ m.thinkMaxHeight }};overflow-y:auto">{{ m.thinkText }}</div>
+                      </sc-if>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ m.showBody }}" hint-placeholder-val="">
                   <div style="font-size:15px;line-height:1.7;white-space:pre-wrap;color:#1a1a1c;padding-left:30px">{{ m.content }}<sc-if value="{{ m.showCursor }}" hint-placeholder-val=""><span style="display:inline-block;width:8px;height:17px;background:var(--ink);vertical-align:text-bottom;margin-left:2px;animation:blink 1s steps(1) infinite"></span></sc-if></div>
+                  </sc-if>
                 </div>
               </sc-if>
             </div>
@@ -867,7 +881,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         <div style="height:100%;min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px;text-align:center">
           <div style="font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:52px;direction:rtl;line-height:1;margin-bottom:18px">תְּבוּנָה</div>
           <div style="font-size:24px;font-weight:600;letter-spacing:-.02em">{{ greeting }}</div>
-          <div style="font-size:14.5px;color:var(--muted);margin-top:8px;max-width:440px;line-height:1.6">Ask a clinical question, paste notes, or attach an image. Answers come from {{ modelName }}.</div>
+          <div style="font-size:14.5px;color:var(--muted);margin-top:8px;max-width:440px;line-height:1.6">Ask a question, paste notes, or attach a text file. Answers come from {{ modelName }}.</div>
           <div style="display:flex;flex-wrap:wrap;gap:9px;justify-content:center;margin-top:26px;max-width:560px">
             <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="3">
               <div sc-camel-on-click="{{ s.use }}" style="border:1px solid var(--line2);border-radius:999px;padding:9px 15px;font-size:13.5px;cursor:pointer;color:var(--body);background:#fff" style-hover="background:var(--hover);border-color:var(--ink)">{{ s.text }}</div>
@@ -895,7 +909,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
           <button sc-camel-on-click="{{ triggerFile }}" title="Attach file" style="flex-shrink:0;width:38px;height:38px;border-radius:10px;border:none;background:transparent;color:var(--muted);display:flex;align-items:center;justify-content:center;cursor:pointer" style-hover="background:var(--hover);color:var(--ink)">
             <svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
           </button>
-          <input ref="{{ fileRef }}" sc-camel-on-change="{{ onFiles }}" type="file" multiple="" accept="image/*,.txt,.md,.markdown,.csv,.tsv,.json,.log,.py,.js,.ts,.jsx,.tsx,.html,.css,.c,.cpp,.h,.hpp,.sh,.yaml,.yml,.toml,.xml,.rs,.go,.java,.sql,.ini,.cfg,.conf" style="display:none">
+          <input ref="{{ fileRef }}" sc-camel-on-change="{{ onFiles }}" type="file" multiple="" accept=".txt,.md,.markdown,.csv,.tsv,.json,.log,.py,.js,.ts,.jsx,.tsx,.html,.css,.c,.cpp,.h,.hpp,.sh,.yaml,.yml,.toml,.xml,.rs,.go,.java,.sql,.ini,.cfg,.conf" style="display:none">
           <textarea value="{{ input }}" sc-camel-on-input="{{ onInput }}" sc-camel-on-key-down="{{ onInputKey }}" rows="1" placeholder="Message Tevunah…" style="flex:1;border:none;outline:none;background:transparent;font-size:15px;line-height:1.5;padding:9px 4px;max-height:200px;color:var(--ink)"></textarea>
           <sc-if value="{{ streaming }}" hint-placeholder-val="">
             <button sc-camel-on-click="{{ stop }}" title="Stop" style="flex-shrink:0;width:38px;height:38px;border-radius:50%;border:none;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer"><span style="width:11px;height:11px;background:#fff;border-radius:2px"></span></button>
@@ -907,7 +921,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
           </sc-if>
         </div>
         <sc-if value="{{ showDisc }}" hint-placeholder-val="{{ true }}">
-          <div style="text-align:center;font-size:11.5px;color:var(--muted2);margin-top:9px;line-height:1.5">This model is a research model and can make mistakes. Not a substitute for professional medical advice, diagnosis, or treatment.</div>
+          <div style="text-align:center;font-size:11.5px;color:var(--muted2);margin-top:9px;line-height:1.5">This model is a research model and can make mistakes. Not a substitute for professional medical, legal, or financial advice.</div>
         </sc-if>
       </div>
     </div>
@@ -1214,9 +1228,14 @@ class Component extends DCLogic {
     this.fileRef = React.createRef();
     this.threadRef = React.createRef();
     this._timer = null;
+    // maxTurns / charBudget mirror the gateway's per-model limits.
     this.MODELS = {
-      'granite-4.1-3b': { id: 'granite-4.1-3b', name: 'Granite 4.1', backend: 'W7600 · 3B', vision: false, maxTurns: 2, charBudget: 5000, desc: 'General-purpose model. Strong reasoning for complex or multi-step questions.' },
-      'medgemma-4b-it': { id: 'medgemma-4b-it', name: 'MedGemma 4B', backend: 'MI100 · BF16', vision: true, maxTurns: 6, charBudget: 20000, desc: 'Medical vision-language model. Clinical questions, notes, and imaging.' }
+      'granite-4.2-8b': { id: 'granite-4.2-8b', name: 'Granite 4.2', backend: 'MI100 · 8B', vision: false, reasoning: true, maxTurns: 4, charBudget: 12000, desc: 'Thinks a problem through before answering. Best for reasoning, math, and code. Hard questions can take a few minutes.' },
+      'granite-4.1-3b': { id: 'granite-4.1-3b', name: 'Granite 4.1', backend: 'W7600 · 3B', vision: false, maxTurns: 2, charBudget: 5000, desc: 'Quick answers for everyday questions.' }
+    };
+    // Models that used to be offered. Kept only so old messages still show their label.
+    this.RETIRED_MODELS = {
+      'medgemma-4b-it': { name: 'MedGemma 4B', backend: 'retired' }
     };
     
     const ss = props && props.startScreen;
@@ -1233,8 +1252,9 @@ class Component extends DCLogic {
       screen, authMode, user,
       fullName: '', email: '', password: '', confirm: '',
       errors: {},
-      model: 'granite-4.1-3b', defaultModel: 'granite-4.1-3b',
+      model: 'granite-4.2-8b', defaultModel: 'granite-4.2-8b',
       modelMenuOpen: false,
+      thinkOpen: {},
       conversations: [], activeConvId: null,
       input: '', attachments: [], streaming: false,
       cName: '', cEmail: '', cMessage: '', contactSent: false,
@@ -1431,13 +1451,16 @@ class Component extends DCLogic {
     if (this._saveT) { clearTimeout(this._saveT); this._saveT = null; }
     this._storeKey = null;
     if (this._sb) this._sb.auth.signOut().catch(() => {});
-    this.setState({ user: null, screen: 'auth', authMode: 'login', conversations: [], activeConvId: null, input: '', attachments: [], streaming: false, errors: {} });
+    this.setState({ user: null, screen: 'auth', authMode: 'login', conversations: [], activeConvId: null, input: '', attachments: [], streaming: false, errors: {}, thinkOpen: {} });
   };
 
   // ---- model ----
   toggleModelMenu = () => this.setState(s => ({ modelMenuOpen: !s.modelMenuOpen }));
   setModel = (id) => this.setState({ model: id, modelMenuOpen: false });
   setDefaultModel = (id) => this.setState({ defaultModel: id, model: id });
+  // Per-message open/closed choice for the thinking panel. Kept outside
+  // conversations so toggling doesn't re-save chats or jump the scroll.
+  toggleThink = (key, expanded) => this.setState(s => ({ thinkOpen: { ...s.thinkOpen, [key]: !expanded } }));
 
   // ---- chat ----
   newChat = () => this.setState(s => ({ activeConvId: null, input: '', attachments: [], model: s.defaultModel, screen: 'chat' }));
@@ -1469,6 +1492,10 @@ class Component extends DCLogic {
     const MAX_IMG = 5 * 1024 * 1024;  // 5 MB per image
     files.forEach(f => {
       const isImage = /^image\//.test(f.type || '');
+      if (isImage && !Object.values(this.MODELS).some(m => m.vision)) {
+        this.setState(s => ({ attachments: [...s.attachments, { name: f.name + ' (images not supported)', size: f.size, kind: 'unsupported' }] }));
+        return;
+      }
       if (isImage) {
         if (f.size > MAX_IMG) {
           this.setState(s => ({ attachments: [...s.attachments, { name: f.name + ' (too large \u2014 5 MB max)', size: f.size, kind: 'unsupported' }] }));
@@ -1579,7 +1606,7 @@ class Component extends DCLogic {
       if (imgs.length) {
         for (const a of imgs) {
           text += (text ? '\n' : '') + (isLatest
-            ? '[The user attached the image "' + a.name + '", but the current model is text-only. Suggest switching to MedGemma 4B for image analysis.]'
+            ? '[The user attached the image "' + a.name + '", but this model is text-only and cannot see images.]'
             : '[Previously attached image: ' + a.name + ']');
         }
       }
@@ -1623,14 +1650,27 @@ class Component extends DCLogic {
           try {
             const obj = JSON.parse(payload);
             const ch = obj.choices && obj.choices[0];
+            const thought = (ch && ch.delta && ch.delta.reasoning_content) || '';
             const delta = (ch && ch.delta && ch.delta.content) || (ch && ch.text) || '';
-            if (delta) this._patchLast(id, m => { m.content += delta; });
+            if (thought || delta) this._patchLast(id, m => {
+              if (thought) {
+                if (!m.thinkStart) m.thinkStart = Date.now();
+                m.reasoning = (m.reasoning || '') + thought;
+              }
+              if (delta) {
+                if (m.reasoning && !m.thinkEnd) m.thinkEnd = Date.now();
+                m.content += delta;
+              }
+            });
           } catch (e) {}
         }
       }
       this._patchLast(id, m => {
+        if (m.reasoning && !m.thinkEnd) m.thinkEnd = Date.now();
         if (!m.content) {
-          m.content = 'No response came back \u2014 the server may have hit its context or memory limit. Try again, or start a new chat.';
+          m.content = m.reasoning
+            ? 'The model finished thinking but didn\u2019t write an answer. Try again, or ask a narrower question.'
+            : 'No response came back \u2014 the server may have hit its context or memory limit. Try again, or start a new chat.';
           m.error = true;
         }
         m.done = true;
@@ -1638,9 +1678,9 @@ class Component extends DCLogic {
       this.setState({ streaming: false });
     } catch (err) {
       if (err && err.name === 'AbortError') {
-        this._patchLast(id, m => { m.done = true; });
+        this._patchLast(id, m => { if (m.reasoning && !m.thinkEnd) m.thinkEnd = Date.now(); m.done = true; });
       } else {
-        this._patchLast(id, m => { if (!m.content) { m.content = 'Could not reach the model server. Please check your connection and try again.'; m.error = true; } m.done = true; });
+        this._patchLast(id, m => { if (m.reasoning && !m.thinkEnd) m.thinkEnd = Date.now(); if (!m.content) { m.content = 'Could not reach the model server. Please check your connection and try again.'; m.error = true; } m.done = true; });
       }
       this.setState({ streaming: false });
     } finally {
@@ -1673,28 +1713,49 @@ class Component extends DCLogic {
   renderVals() {
     const s = this.state;
     const showDisc = (this.props && this.props.showDisclaimer !== undefined) ? this.props.showDisclaimer : true;
-    const mdl = this.MODELS[s.model];
+    const mdl = this.MODELS[s.model] || Object.values(this.MODELS)[0];
     const conv = this.activeConv();
     const msgs = conv ? conv.messages : [];
 
     const suggestions = [
-      '38yo with sudden chest pain — differentials?',
-      'Summarize first-line management for community-acquired pneumonia',
-      'Interpret these labs for me'
+      'Explain how quantization shrinks a language model',
+      'Write a Python script that renames photos by date',
+      'Compare running AI on-prem vs. in the cloud'
     ].map(text => ({ text, use: () => this.useSuggestion(text) }));
 
+    const THINK_TAIL = 700; // while thinking, show only the newest reasoning
     const messages = msgs.map((m, i) => {
       const isUser = m.role === 'user';
-      const mm = m.model ? this.MODELS[m.model] : mdl;
+      const mm = m.model ? (this.MODELS[m.model] || this.RETIRED_MODELS[m.model]) : mdl;
       const atts = (m.attachments || []).map(a => ({ name: a.name }));
+      const live = !isUser && !m.done && s.streaming && i === msgs.length - 1;
+      const hasText = !!(m.content && m.content.length);
+      const hasThinking = !isUser && !!m.reasoning;
+      const thinkingNow = hasThinking && live && !hasText;
+      const thinkKey = s.activeConvId + ':' + i;
+      const thinkChoice = s.thinkOpen[thinkKey];
+      const thinkExpanded = hasThinking && (thinkChoice !== undefined ? thinkChoice : thinkingNow);
+      const thinkSecs = m.thinkStart ? Math.max(1, Math.round(((m.thinkEnd || Date.now()) - m.thinkStart) / 1000)) : 0;
+      const showCursor = live && (hasText || !hasThinking);
       return {
         ...m,
         isUser, isAssistant: !isUser,
         align: isUser ? 'flex-end' : 'flex-start',
-        hasText: !!(m.content && m.content.length),
+        hasText,
         hasAtts: atts.length > 0, atts,
         modelName: mm ? mm.name : '', backend: mm ? mm.backend : '',
-        showCursor: !isUser && !m.done && s.streaming && i === msgs.length - 1
+        showCursor,
+        showBody: hasText || showCursor,
+        hasThinking, thinkExpanded,
+        thinkLabel: thinkingNow ? 'Thinking\u2026'
+          : m.error ? 'Thinking interrupted'
+          : hasText ? 'Thought for ' + thinkSecs + 's'
+          : 'Stopped while thinking',
+        thinkAnim: thinkingNow ? 'pulse 1.6s ease-in-out infinite' : 'none',
+        thinkTransform: thinkExpanded ? 'rotate(90deg)' : 'none',
+        thinkText: thinkingNow && m.reasoning.length > THINK_TAIL ? '\u2026' + m.reasoning.slice(-THINK_TAIL) : (m.reasoning || ''),
+        thinkMaxHeight: thinkingNow ? 'none' : '320px',
+        toggleThink: () => this.toggleThink(thinkKey, thinkExpanded)
       };
     });
 
@@ -1736,7 +1797,7 @@ class Component extends DCLogic {
       // auth
       showLogin: s.authMode === 'login', showRegister: s.authMode === 'register',
       authTitle: s.authMode === 'login' ? 'Sign in' : 'Create your account',
-      authSubtitle: s.authMode === 'login' ? 'Welcome back to Tevunah.Ai.' : 'Register to access the Tevunah clinical models.',
+      authSubtitle: s.authMode === 'login' ? 'Welcome back to Tevunah.Ai.' : 'Register to access the Tevunah models.',
       authSwitchText: s.authMode === 'login' ? "Don't have an account?" : 'Already registered?',
       authSwitchAction: s.authMode === 'login' ? 'Register' : 'Sign in',
       authPending: s.authPending,
