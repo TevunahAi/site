@@ -1230,11 +1230,13 @@ class Component extends DCLogic {
     this._timer = null;
     // maxTurns / charBudget mirror the gateway's per-model limits.
     this.MODELS = {
-      'granite-4.2-8b': { id: 'granite-4.2-8b', name: 'Granite 4.2', backend: 'MI100 · 8B', vision: false, reasoning: true, maxTurns: 4, charBudget: 12000, desc: 'Thinks a problem through before answering. Best for reasoning, math, and code. Hard questions can take a few minutes.' },
+      // MI100 offline 2026-09-25 — uncomment to re-enable Granite 4.2 (and move it out of RETIRED_MODELS):
+      // 'granite-4.2-8b': { id: 'granite-4.2-8b', name: 'Granite 4.2', backend: 'MI100 · 8B', vision: false, reasoning: true, maxTurns: 4, charBudget: 12000, desc: 'Thinks a problem through before answering. Best for reasoning, math, and code. Hard questions can take a few minutes.' },
       'granite-4.1-3b': { id: 'granite-4.1-3b', name: 'Granite 4.1', backend: 'W7600 · 3B', vision: false, maxTurns: 2, charBudget: 5000, desc: 'Quick answers for everyday questions.' }
     };
     // Models that used to be offered. Kept only so old messages still show their label.
     this.RETIRED_MODELS = {
+      'granite-4.2-8b': { name: 'Granite 4.2', backend: 'offline' },
       'medgemma-4b-it': { name: 'MedGemma 4B', backend: 'retired' }
     };
     
@@ -1252,7 +1254,7 @@ class Component extends DCLogic {
       screen, authMode, user,
       fullName: '', email: '', password: '', confirm: '',
       errors: {},
-      model: 'granite-4.2-8b', defaultModel: 'granite-4.2-8b',
+      model: 'granite-4.1-3b', defaultModel: 'granite-4.1-3b',
       modelMenuOpen: false,
       thinkOpen: {},
       conversations: [], activeConvId: null,
