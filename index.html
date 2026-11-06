@@ -678,6 +678,8 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
   @keyframes spin{to{transform:rotate(360deg)}}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
   @media (prefers-reduced-motion: reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+  @media (max-width: 820px){.tv-hdr{gap:20px!important}.tv-hdr>div+div{gap:14px!important}}
+  @media (max-width: 640px){.chm-row{grid-template-columns:1fr!important;gap:12px!important}}
   ::-webkit-scrollbar{width:11px;height:11px}
   ::-webkit-scrollbar-thumb{background:#e2e2e2;border-radius:8px;border:3px solid transparent;background-clip:padding-box}
   ::-webkit-scrollbar-thumb:hover{background:#cdcdcd;background-clip:padding-box;border:3px solid transparent}
@@ -699,6 +701,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       <sc-if value="{{ loggedIn }}" hint-placeholder-val=""><span sc-camel-on-click="{{ goChat }}" style="font-size:13.5px;font-weight:500;color:#9a9a9e;cursor:pointer" style-hover="color:#fff">Chat</span></sc-if>
       <span sc-camel-on-click="{{ goMission }}" style="font-size:13.5px;font-weight:500;color:#9a9a9e;cursor:pointer" style-hover="color:#fff">Mission</span>
       <span sc-camel-on-click="{{ goServices }}" style="font-size:13.5px;font-weight:500;color:#9a9a9e;cursor:pointer" style-hover="color:#fff">Services</span>
+      <span sc-camel-on-click="{{ goChochmah }}" style="font-size:13.5px;font-weight:500;color:#9a9a9e;cursor:pointer" style-hover="color:#fff">Chochmah</span>
       <a href="https://huggingface.co/TevunahAi" target="_blank" style="font-size:13.5px;font-weight:500;color:#9a9a9e;cursor:pointer;text-decoration:none" style-hover="color:#fff">Hugging Face ↗</a>
       <span sc-camel-on-click="{{ goAbout }}" style="font-size:13.5px;font-weight:500;color:#9a9a9e;cursor:pointer" style-hover="color:#fff">About</span>
       <span sc-camel-on-click="{{ goContact }}" style="font-size:13.5px;font-weight:500;color:#9a9a9e;cursor:pointer" style-hover="color:#fff">Contact</span>
@@ -991,7 +994,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 <sc-if value="{{ showAbout }}" hint-placeholder-val="">
 <div style="height:100vh;width:100%;overflow-y:auto;overflow-x:hidden;--ink:#ffffff;--bg:#0b0b0c;--paper:#161617;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.22);--muted:#9a9a9e;--muted2:#6e6e72;--chip:rgba(255,255,255,.08);--hover:rgba(255,255,255,.06);--body:#c4c4c8;background:var(--bg);color:var(--ink)">
   <div style="height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;background:var(--bg);z-index:5">
-    <div style="display:flex;align-items:center;gap:32px">
+    <div class="tv-hdr" style="display:flex;align-items:center;gap:32px">
       <div sc-camel-on-click="{{ goAuth }}" style="display:flex;align-items:center;gap:10px;cursor:pointer">
         <span style="font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:22px;direction:rtl;line-height:1">תְּבוּנָה</span>
         <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--muted)">TEVUNAH.AI</span>
@@ -1000,6 +1003,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         <sc-if value="{{ loggedIn }}" hint-placeholder-val=""><span sc-camel-on-click="{{ goChat }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chatColor }}" style-hover="color:var(--ink)">Chat</span></sc-if>
         <span sc-camel-on-click="{{ goMission }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ missionColor }}" style-hover="color:var(--ink)">Mission</span>
         <span sc-camel-on-click="{{ goServices }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ servicesColor }}" style-hover="color:var(--ink)">Services</span>
+        <span sc-camel-on-click="{{ goChochmah }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chochmahColor }}" style-hover="color:var(--ink)">Chochmah</span>
         <a href="https://huggingface.co/TevunahAi" target="_blank" style="font-size:14px;font-weight:500;cursor:pointer;color:var(--muted);text-decoration:none" style-hover="color:var(--ink)">Hugging Face ↗</a>
         <span sc-camel-on-click="{{ goAbout }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ aboutColor }}" style-hover="color:var(--ink)">About</span>
         <span sc-camel-on-click="{{ goContact }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ contactColor }}" style-hover="color:var(--ink)">Contact</span>
@@ -1039,7 +1043,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 <sc-if value="{{ showMission }}" hint-placeholder-val="">
 <div style="height:100vh;width:100%;overflow-y:auto;overflow-x:hidden;--ink:#ffffff;--bg:#0b0b0c;--paper:#161617;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.22);--muted:#9a9a9e;--muted2:#6e6e72;--chip:rgba(255,255,255,.08);--hover:rgba(255,255,255,.06);--body:#c4c4c8;background:var(--bg);color:var(--ink)">
   <div style="height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;background:var(--bg);z-index:5">
-    <div style="display:flex;align-items:center;gap:32px">
+    <div class="tv-hdr" style="display:flex;align-items:center;gap:32px">
       <div sc-camel-on-click="{{ goAuth }}" style="display:flex;align-items:center;gap:10px;cursor:pointer">
         <span style="font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:22px;direction:rtl;line-height:1">תְּבוּנָה</span>
         <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--muted)">TEVUNAH.AI</span>
@@ -1048,6 +1052,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         <sc-if value="{{ loggedIn }}" hint-placeholder-val=""><span sc-camel-on-click="{{ goChat }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chatColor }}" style-hover="color:var(--ink)">Chat</span></sc-if>
         <span sc-camel-on-click="{{ goMission }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ missionColor }}" style-hover="color:var(--ink)">Mission</span>
         <span sc-camel-on-click="{{ goServices }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ servicesColor }}" style-hover="color:var(--ink)">Services</span>
+        <span sc-camel-on-click="{{ goChochmah }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chochmahColor }}" style-hover="color:var(--ink)">Chochmah</span>
         <a href="https://huggingface.co/TevunahAi" target="_blank" style="font-size:14px;font-weight:500;cursor:pointer;color:var(--muted);text-decoration:none" style-hover="color:var(--ink)">Hugging Face ↗</a>
         <span sc-camel-on-click="{{ goAbout }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ aboutColor }}" style-hover="color:var(--ink)">About</span>
         <span sc-camel-on-click="{{ goContact }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ contactColor }}" style-hover="color:var(--ink)">Contact</span>
@@ -1081,7 +1086,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 <sc-if value="{{ showServices }}" hint-placeholder-val="">
 <div style="height:100vh;width:100%;overflow-y:auto;overflow-x:hidden;--ink:#ffffff;--bg:#0b0b0c;--paper:#161617;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.22);--muted:#9a9a9e;--muted2:#6e6e72;--chip:rgba(255,255,255,.08);--hover:rgba(255,255,255,.06);--body:#c4c4c8;background:var(--bg);color:var(--ink)">
   <div style="height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;background:var(--bg);z-index:5">
-    <div style="display:flex;align-items:center;gap:32px">
+    <div class="tv-hdr" style="display:flex;align-items:center;gap:32px">
       <div sc-camel-on-click="{{ goAuth }}" style="display:flex;align-items:center;gap:10px;cursor:pointer">
         <span style="font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:22px;direction:rtl;line-height:1">תְּבוּנָה</span>
         <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--muted)">TEVUNAH.AI</span>
@@ -1090,6 +1095,7 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         <sc-if value="{{ loggedIn }}" hint-placeholder-val=""><span sc-camel-on-click="{{ goChat }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chatColor }}" style-hover="color:var(--ink)">Chat</span></sc-if>
         <span sc-camel-on-click="{{ goMission }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ missionColor }}" style-hover="color:var(--ink)">Mission</span>
         <span sc-camel-on-click="{{ goServices }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ servicesColor }}" style-hover="color:var(--ink)">Services</span>
+        <span sc-camel-on-click="{{ goChochmah }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chochmahColor }}" style-hover="color:var(--ink)">Chochmah</span>
         <a href="https://huggingface.co/TevunahAi" target="_blank" style="font-size:14px;font-weight:500;cursor:pointer;color:var(--muted);text-decoration:none" style-hover="color:var(--ink)">Hugging Face ↗</a>
         <span sc-camel-on-click="{{ goAbout }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ aboutColor }}" style-hover="color:var(--ink)">About</span>
         <span sc-camel-on-click="{{ goContact }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ contactColor }}" style-hover="color:var(--ink)">Contact</span>
@@ -1164,11 +1170,11 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
 </div>
 </sc-if>
 
-<!-- ============ CONTACT ============ -->
-<sc-if value="{{ showContact }}" hint-placeholder-val="">
+<!-- ============ CHOCHMAH ============ -->
+<sc-if value="{{ showChochmah }}" hint-placeholder-val="">
 <div style="height:100vh;width:100%;overflow-y:auto;overflow-x:hidden;--ink:#ffffff;--bg:#0b0b0c;--paper:#161617;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.22);--muted:#9a9a9e;--muted2:#6e6e72;--chip:rgba(255,255,255,.08);--hover:rgba(255,255,255,.06);--body:#c4c4c8;background:var(--bg);color:var(--ink)">
   <div style="height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;background:var(--bg);z-index:5">
-    <div style="display:flex;align-items:center;gap:32px">
+    <div class="tv-hdr" style="display:flex;align-items:center;gap:32px">
       <div sc-camel-on-click="{{ goAuth }}" style="display:flex;align-items:center;gap:10px;cursor:pointer">
         <span style="font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:22px;direction:rtl;line-height:1">תְּבוּנָה</span>
         <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--muted)">TEVUNAH.AI</span>
@@ -1177,6 +1183,113 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
         <sc-if value="{{ loggedIn }}" hint-placeholder-val=""><span sc-camel-on-click="{{ goChat }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chatColor }}" style-hover="color:var(--ink)">Chat</span></sc-if>
         <span sc-camel-on-click="{{ goMission }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ missionColor }}" style-hover="color:var(--ink)">Mission</span>
         <span sc-camel-on-click="{{ goServices }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ servicesColor }}" style-hover="color:var(--ink)">Services</span>
+        <span sc-camel-on-click="{{ goChochmah }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chochmahColor }}" style-hover="color:var(--ink)">Chochmah</span>
+        <a href="https://huggingface.co/TevunahAi" target="_blank" style="font-size:14px;font-weight:500;cursor:pointer;color:var(--muted);text-decoration:none" style-hover="color:var(--ink)">Hugging Face ↗</a>
+        <span sc-camel-on-click="{{ goAbout }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ aboutColor }}" style-hover="color:var(--ink)">About</span>
+        <span sc-camel-on-click="{{ goContact }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ contactColor }}" style-hover="color:var(--ink)">Contact</span>
+      </div>
+    </div>
+    <sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ true }}"><button sc-camel-on-click="{{ goAuth }}" style="background:var(--ink);color:var(--bg);border:none;border-radius:9px;padding:9px 17px;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="background:#2a2a2a">Sign in</button></sc-if><sc-if value="{{ loggedIn }}" hint-placeholder-val=""><button sc-camel-on-click="{{ goChat }}" style="background:var(--ink);color:var(--bg);border:none;border-radius:9px;padding:9px 17px;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="background:#2a2a2a">Open chat →</button></sc-if>
+  </div>
+
+  <div style="max-width:820px;margin:0 auto;padding:80px 32px 8px">
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.2em;color:var(--muted)">CHOCHMAH</span>
+      <span style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:19px;direction:rtl;line-height:1;color:var(--muted)">חָכְמָה</span>
+    </div>
+    <h1 style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:50px;line-height:1.16;letter-spacing:-.01em;margin:18px 0 0;text-wrap:balance">Our own models, from the first line of code.</h1>
+  </div>
+
+  <div style="max-width:820px;margin:0 auto;padding:44px 32px 0">
+    <div style="display:flex;flex-direction:column;gap:14px;padding:36px 0;border-top:1px solid var(--line)">
+      <p style="font-size:18px;line-height:1.75;color:var(--body);margin:0;max-width:680px;text-wrap:pretty">Chochmah, Hebrew for wisdom, is our line of language models trained from scratch: our own model and training code, our own hand-built corpora of case law, philosophy, and fiction, and weights that start from random initialization instead of someone else's checkpoint. Every model in the line was trained on a single NVIDIA RTX 5000 Ada workstation GPU, and every one is published with open weights on Hugging Face under Apache-2.0.</p>
+    </div>
+
+    <div class="chm-row" style="display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:34px;padding:36px 0;border-top:1px solid var(--line)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;padding-top:9px">Base model</div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-width:0">
+        <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:30px;line-height:1.15;letter-spacing:-.01em">Chochmah-350M</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">358.7M params</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">30B tokens</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">2K context</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">10.5 days · 1 GPU</span>
+        </div>
+        <p style="font-size:16px;line-height:1.75;color:var(--body);margin:0;text-wrap:pretty">Our first model written and trained from scratch. It uses a standard Llama-style architecture, so it loads in Hugging Face transformers with no custom code, and it was trained in three phases: a broad foundation, a domain build, and a final anneal on the highest-quality data. Alongside educational web text, code, and math, the mix draws on corpora we built ourselves: more than 2.5 million U.S. court opinions, 3,072 public-domain works of philosophy, and OpenStax textbooks. Trained on a tenth of the data, it outscores Pythia-410M on ARC-Easy, 59.0 to 51.9.</p>
+        <a href="https://huggingface.co/TevunahAi/chochmah-350m" target="_blank" style="font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:2px" style-hover="border-color:var(--ink)">View on Hugging Face ↗</a>
+      </div>
+    </div>
+
+    <div class="chm-row" style="display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:34px;padding:36px 0;border-top:1px solid var(--line)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;padding-top:9px">Base model</div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-width:0">
+        <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:30px;line-height:1.15;letter-spacing:-.01em">Chochmah-1B</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">1.18B params</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">45B tokens</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">4K context</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">44 days · 1 GPU</span>
+        </div>
+        <p style="font-size:16px;line-height:1.75;color:var(--body);margin:0;text-wrap:pretty">Our second from-scratch model, more than three times the size of the first. It adds grouped-query attention and QK-norm, and it loads as a standard Qwen3-architecture model, though only the architecture is shared: no Qwen weights, data, or tokenizer. The data was rebuilt for this run with 24,175 works of public-domain fiction, a cleaned philosophy corpus, and a heavier share of case law. Against Pythia-1B, which trained on more than six times as many tokens, it scores 67.1 to 57.0 on ARC-Easy.</p>
+        <a href="https://huggingface.co/TevunahAi/Chochmah1B" target="_blank" style="font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:2px" style-hover="border-color:var(--ink)">View on Hugging Face ↗</a>
+      </div>
+    </div>
+
+    <div class="chm-row" style="display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:34px;padding:36px 0;border-top:1px solid var(--line)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;padding-top:9px">Instruct</div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-width:0">
+        <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:30px;line-height:1.15;letter-spacing:-.01em">Chochmah-1B-Instruct</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">SmolTalk</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">1.04M conversations</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">ChatML</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">85 hours · 1 GPU</span>
+        </div>
+        <p style="font-size:16px;line-height:1.75;color:var(--body);margin:0;text-wrap:pretty">Chochmah-1B taught to follow instructions and hold a conversation. Every weight was updated in a full supervised fine-tune, with no LoRA and no frozen layers, over two epochs of the SmolTalk dataset. It uses the ChatML format with its chat template bundled, so it drops straight into standard chat tooling. This is the supervised-only version, kept as its own release so the effect of preference tuning can be compared side by side.</p>
+        <a href="https://huggingface.co/TevunahAi/Chochmah-1B-Instruct" target="_blank" style="font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:2px" style-hover="border-color:var(--ink)">View on Hugging Face ↗</a>
+      </div>
+    </div>
+
+    <div class="chm-row" style="display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:34px;padding:36px 0;border-top:1px solid var(--line)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;padding-top:9px">Instruct · DPO</div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-width:0">
+        <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:30px;line-height:1.15;letter-spacing:-.01em">Chochmah-1B-Instruct-DPO</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">UltraFeedback</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">52.5K preference pairs</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">ChatML</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">4.1 hours · 1 GPU</span>
+        </div>
+        <p style="font-size:16px;line-height:1.75;color:var(--body);margin:0;text-wrap:pretty">The Instruct model with a round of Direct Preference Optimization on top, trained on UltraFeedback preference pairs. The pass took about four hours and raised every score we measured: IFEval prompt-level strict went from 22.7 to 24.4, and GSM8K math from 13.0 to 14.7. The trade-off is wordier answers, a known bias of that dataset, and a length-normalized pass is planned to address it.</p>
+        <a href="https://huggingface.co/TevunahAi/Chochmah-1B-Instruct-DPO" target="_blank" style="font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:2px" style-hover="border-color:var(--ink)">View on Hugging Face ↗</a>
+      </div>
+    </div>
+
+    <div style="padding:32px 0 0;border-top:1px solid var(--line)">
+      <p style="font-size:14.5px;line-height:1.7;color:var(--muted);margin:0;max-width:680px;text-wrap:pretty">All four are research releases, meant as starting points for fine-tuning and quantization work. Like any small model, they can state false things fluently, so they are not a source of legal, medical, financial, or factual answers.</p>
+    </div>
+  </div>
+
+  <div style="max-width:820px;margin:0 auto;padding:40px 32px 56px;border-top:1px solid var(--line);margin-top:40px">
+    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:var(--muted2)">© 2026 TEVUNAH.AI</div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ============ CONTACT ============ -->
+<sc-if value="{{ showContact }}" hint-placeholder-val="">
+<div style="height:100vh;width:100%;overflow-y:auto;overflow-x:hidden;--ink:#ffffff;--bg:#0b0b0c;--paper:#161617;--line:rgba(255,255,255,.1);--line2:rgba(255,255,255,.22);--muted:#9a9a9e;--muted2:#6e6e72;--chip:rgba(255,255,255,.08);--hover:rgba(255,255,255,.06);--body:#c4c4c8;background:var(--bg);color:var(--ink)">
+  <div style="height:64px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 32px;position:sticky;top:0;background:var(--bg);z-index:5">
+    <div class="tv-hdr" style="display:flex;align-items:center;gap:32px">
+      <div sc-camel-on-click="{{ goAuth }}" style="display:flex;align-items:center;gap:10px;cursor:pointer">
+        <span style="font-family:'Frank Ruhl Libre',serif;font-weight:900;font-size:22px;direction:rtl;line-height:1">תְּבוּנָה</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:var(--muted)">TEVUNAH.AI</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:24px">
+        <sc-if value="{{ loggedIn }}" hint-placeholder-val=""><span sc-camel-on-click="{{ goChat }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chatColor }}" style-hover="color:var(--ink)">Chat</span></sc-if>
+        <span sc-camel-on-click="{{ goMission }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ missionColor }}" style-hover="color:var(--ink)">Mission</span>
+        <span sc-camel-on-click="{{ goServices }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ servicesColor }}" style-hover="color:var(--ink)">Services</span>
+        <span sc-camel-on-click="{{ goChochmah }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ chochmahColor }}" style-hover="color:var(--ink)">Chochmah</span>
         <a href="https://huggingface.co/TevunahAi" target="_blank" style="font-size:14px;font-weight:500;cursor:pointer;color:var(--muted);text-decoration:none" style-hover="color:var(--ink)">Hugging Face ↗</a>
         <span sc-camel-on-click="{{ goAbout }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ aboutColor }}" style-hover="color:var(--ink)">About</span>
         <span sc-camel-on-click="{{ goContact }}" style="font-size:14px;font-weight:500;cursor:pointer;color:{{ contactColor }}">Contact</span>
@@ -1249,7 +1362,14 @@ class Component extends DCLogic {
     else if (ss === 'about') { screen = 'about'; }
     else if (ss === 'mission') { screen = 'mission'; }
     else if (ss === 'services') { screen = 'services'; }
+    else if (ss === 'chochmah') { screen = 'chochmah'; }
     else if (ss === 'contact') { screen = 'contact'; }
+    // Public tabs can be linked directly: tevunah.ai/#chochmah or tevunah.ai/?page=chochmah
+    // (chochmah.ai forwards to the latter).
+    this.PUBLIC_SCREENS = ['mission', 'services', 'chochmah', 'about', 'contact'];
+    const linked = this._linkedScreen();
+    if (linked) screen = linked;
+    this._lastScreen = screen;
     this.state = {
       screen, authMode, user,
       fullName: '', email: '', password: '', confirm: '',
@@ -1269,7 +1389,33 @@ class Component extends DCLogic {
     // (Supabase's row-level-security model relies on that), so embedding it
     // client-side is the intended usage.
     this._supabaseReady = false;
+    // A ?page= link is tidied to the #tab form before Supabase reads the URL.
+    try { if (new URLSearchParams(window.location.search).has('page') && !window.location.hash) this._syncUrl(this.state.screen); } catch (e) {}
+    this._onHash = () => { const s = this._linkedScreen(); if (s && s !== this.state.screen) this.go(s); };
+    window.addEventListener('hashchange', this._onHash);
     this._initSupabase();
+  }
+
+  _linkedScreen() {
+    try {
+      const h = decodeURIComponent((window.location.hash || '').slice(1)).toLowerCase();
+      if (this.PUBLIC_SCREENS.includes(h)) return h;
+      const q = (new URLSearchParams(window.location.search).get('page') || '').toLowerCase();
+      if (this.PUBLIC_SCREENS.includes(q)) return q;
+    } catch (e) {}
+    return null;
+  }
+
+  // Keep the address bar on the current public tab so links, bookmarks and reloads land there.
+  // Uses replaceState, so it adds no history entries and never fires hashchange.
+  _syncUrl(screen) {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      params.delete('page');
+      const qs = params.toString();
+      const url = window.location.pathname + (qs ? '?' + qs : '') + (this.PUBLIC_SCREENS.includes(screen) ? '#' + screen : '');
+      if (url !== window.location.pathname + window.location.search + window.location.hash) window.history.replaceState(null, '', url);
+    } catch (e) {}
   }
 
   _getAuthStorage() {
@@ -1328,10 +1474,11 @@ class Component extends DCLogic {
     const name = meta.full_name || (sbUser.email || 'User').split('@')[0];
     const initials = name.trim().split(/\s+/).map(w => w[0]).slice(0, 2).join('').toUpperCase() || 'U';
     this._storeKey = 'tevunah_chats_' + sbUser.id;
-    this.setState({
+    // Signing in from the auth screen opens chat; a restored session leaves a visitor on the tab they linked to.
+    this.setState(s => ({
       user: { name, email: sbUser.email, initials, plan: 'Free' },
-      screen: 'chat', errors: {}, password: '', confirm: '', authPending: false
-    });
+      screen: s.screen === 'auth' ? 'chat' : s.screen, errors: {}, password: '', confirm: '', authPending: false
+    }));
     this._loadChats();
   }
 
@@ -1397,8 +1544,11 @@ class Component extends DCLogic {
     if (prev && (prev.conversations !== this.state.conversations || prev.defaultModel !== this.state.defaultModel)) {
       this._saveChats();
     }
+    // The dc-runtime calls componentDidUpdate(prevProps) only, so track the last screen here.
+    if (this._lastScreen !== this.state.screen) { this._lastScreen = this.state.screen; this._syncUrl(this.state.screen); }
   }
   componentWillUnmount() {
+    if (this._onHash) window.removeEventListener('hashchange', this._onHash);
     if (this._timer) clearInterval(this._timer);
     if (this._abort) this._abort.abort();
     if (this._saveT) clearTimeout(this._saveT);
@@ -1786,11 +1936,12 @@ class Component extends DCLogic {
     return {
       // routing
       showAuth: s.screen === 'auth', showChat: s.screen === 'chat', showAccount: s.screen === 'account',
-      showAbout: s.screen === 'about', showMission: s.screen === 'mission', showServices: s.screen === 'services', showContact: s.screen === 'contact',
-      goAbout: () => this.go('about'), goMission: () => this.go('mission'), goServices: () => this.go('services'), goContact: () => this.go('contact'), goAuth: this.goAuth,
+      showAbout: s.screen === 'about', showMission: s.screen === 'mission', showServices: s.screen === 'services', showChochmah: s.screen === 'chochmah', showContact: s.screen === 'contact',
+      goAbout: () => this.go('about'), goMission: () => this.go('mission'), goServices: () => this.go('services'), goChochmah: () => this.go('chochmah'), goContact: () => this.go('contact'), goAuth: this.goAuth,
       aboutColor: s.screen === 'about' ? 'var(--ink)' : 'var(--muted)',
       missionColor: s.screen === 'mission' ? 'var(--ink)' : 'var(--muted)',
       servicesColor: s.screen === 'services' ? 'var(--ink)' : 'var(--muted)',
+      chochmahColor: s.screen === 'chochmah' ? 'var(--ink)' : 'var(--muted)',
       contactColor: s.screen === 'contact' ? 'var(--ink)' : 'var(--muted)',
       loggedIn: !!s.user, loggedOut: !s.user,
       chatColor: s.screen === 'chat' ? 'var(--ink)' : 'var(--muted)',
