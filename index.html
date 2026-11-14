@@ -1265,8 +1265,23 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       </div>
     </div>
 
+    <div class="chm-row" style="display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:34px;padding:36px 0;border-top:1px solid var(--line)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;padding-top:9px">Diffusion</div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-width:0">
+        <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:30px;line-height:1.15;letter-spacing:-.01em">Chochmah-1B-Diffusion</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">Block diffusion</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">3B tokens</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">8-token blocks</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">7.3 days · 1 GPU</span>
+        </div>
+        <p style="font-size:16px;line-height:1.75;color:var(--body);margin:0;text-wrap:pretty">Chochmah-1B converted from writing one token at a time to block diffusion. It writes eight tokens at a time: each block starts fully masked and is filled in over several passes, in whatever order the model is most sure of, so a word can be chosen with the words on both sides of it already in place. Every weight was updated over 3 billion more tokens of text the base model had already read, teaching a new way to write without adding knowledge. The trade-off is speed: the text holds together only at one token per pass, so it is no faster than the base model.</p>
+        <a href="https://huggingface.co/TevunahAi/Chochmah-1B-Diffusion" target="_blank" style="font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:2px" style-hover="border-color:var(--ink)">View on Hugging Face ↗</a>
+      </div>
+    </div>
+
     <div style="padding:32px 0 0;border-top:1px solid var(--line)">
-      <p style="font-size:14.5px;line-height:1.7;color:var(--muted);margin:0;max-width:680px;text-wrap:pretty">All four are research releases, meant as starting points for fine-tuning and quantization work. Like any small model, they can state false things fluently, so they are not a source of legal, medical, financial, or factual answers.</p>
+      <p style="font-size:14.5px;line-height:1.7;color:var(--muted);margin:0;max-width:680px;text-wrap:pretty">All five are research releases, meant as starting points for fine-tuning and quantization work. Like any small model, they can state false things fluently, so they are not a source of legal, medical, financial, or factual answers.</p>
     </div>
   </div>
 
