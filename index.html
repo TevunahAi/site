@@ -1280,8 +1280,23 @@ Resources:`;for(let t of c){if(!t||typeof t!=`string`)throw Error(`@supabase/aut
       </div>
     </div>
 
+    <div class="chm-row" style="display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:34px;padding:36px 0;border-top:1px solid var(--line)">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;padding-top:9px">Diffusion · Instruct</div>
+      <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;min-width:0">
+        <div style="font-family:'Frank Ruhl Libre',serif;font-weight:700;font-size:30px;line-height:1.15;letter-spacing:-.01em">Chochmah-1B-Diffusion-Instruct</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">Block diffusion</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">SmolTalk</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">ChatML</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;color:var(--body);background:var(--chip);padding:3px 8px;border-radius:6px">149 hours · 1 GPU</span>
+        </div>
+        <p style="font-size:16px;line-height:1.75;color:var(--body);margin:0;text-wrap:pretty">Chochmah-1B-Diffusion taught to follow instructions and hold a conversation. It was fine-tuned on the same SmolTalk dataset as Chochmah-1B-Instruct, under the block-diffusion objective, so it answers a question and stops when it is done while still writing eight tokens at a time. The two instruct models share a pretrained base and a dataset and differ in how they produce text, which makes them a matched pair. In its first samples this one got a landmark case right that the other got wrong and kept to format limits the other missed, and it did worse at arithmetic and code. Benchmarks are next.</p>
+        <a href="https://huggingface.co/TevunahAi/Chochmah-1B-Diffusion-Instruct" target="_blank" style="font-size:15px;font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line2);padding-bottom:2px" style-hover="border-color:var(--ink)">View on Hugging Face ↗</a>
+      </div>
+    </div>
+
     <div style="padding:32px 0 0;border-top:1px solid var(--line)">
-      <p style="font-size:14.5px;line-height:1.7;color:var(--muted);margin:0;max-width:680px;text-wrap:pretty">All five are research releases, meant as starting points for fine-tuning and quantization work. Like any small model, they can state false things fluently, so they are not a source of legal, medical, financial, or factual answers.</p>
+      <p style="font-size:14.5px;line-height:1.7;color:var(--muted);margin:0;max-width:680px;text-wrap:pretty">All six are research releases, meant as starting points for fine-tuning and quantization work. Like any small model, they can state false things fluently, so they are not a source of legal, medical, financial, or factual answers.</p>
     </div>
   </div>
 
